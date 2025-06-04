@@ -11,7 +11,10 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var plusButton: UIButton!
-
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet var refreshButton: UIView!
+    @IBOutlet weak var changeView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -21,6 +24,25 @@ class ViewController: UIViewController {
     @IBAction func incrementCounter(_ sender: Any) {
         counter += 1
         counterLabel.text = "\(counter)"
+        changeView.text += "\n\(Date()) счетчик увеличен на 1"
     }
+    
+    @IBAction func decreaseCounter(_ sender: Any) {
+        if counter > 0 {
+            counter -= 1
+            counterLabel.text = "\(counter)"
+            changeView.text += "\n\(Date()) счетчик уменьшен на 1"
+        } else {
+            changeView.text += "\n\(Date()) попытка уменьшить значение ниже 0"
+        }
+    }
+    
+    @IBAction func refreshCounter(_ sender: Any) {
+        counter = 0
+        counterLabel.text = "\(counter)"
+        changeView.text += "\n\(Date()): значаение сброшено"
+    }
+    
+    
 }
 
